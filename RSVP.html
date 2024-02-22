@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Claudia e Federico</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Matrimonio Claudia e Federico Seregno">
+    <meta name="keywords" content="matrimonio, Seregno, Claudia, Federico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff"/>
+	<script
+		src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+	<script>
+		function SubForm (button){
+            var innerForm = button.parentNode;
+            var outerForm = innerForm.parentNode;
+
+                var formData = {
+                    "allergie": innerForm.querySelector('[name="allergie"]').value,
+                    "presence": innerForm.querySelector('input[name="presence"]:checked').value,
+                };
+
+                var query = "select * from VUjWtheGTbAgkvoM where full_name='" + outerForm.getAttribute('data-name') + "'";
+
+                $.ajax({
+                    url: "https://api.apispreadsheets.com/data/VUjWtheGTbAgkvoM/",
+                    type: "post",
+                    data: JSON.stringify({
+                        "data": formData,
+                        "query": query
+                    }),
+                    contentType: "application/json", 
+                    success: function (response) {
+                        var banner = document.getElementById('confirmation');
+                        banner.style.display = "block";
+                        document.getElementById('blur').style.display = "block";
+                        banner.querySelector('.whitename').innerHTML = outerForm.getAttribute('data-shortname');
+                        if (innerForm.querySelector('input[name="presence"]:checked').value == "Si") {
+                            banner.querySelector('.pres').innerHTML = "Sarà presente";
+                        } else {
+                            banner.querySelector('.pres').innerHTML = "Non sarà presente";
+                        }
+                        banner.querySelector('.smalltext').innerHTML = "Allergie: " + innerForm.querySelector('[name="allergie"]').value;
+                    },
+                    error: function (error) {
+                        console.error("Error submitting form:", error);
+                    }
+                });
+        }
+
+        function ReadForm (){
+            var nome = document.querySelector('input[name="nome"]').value;
+            var cognome = document.querySelector('input[name="cognome"]').value;
+            let i;
+            let y = 0;
+
+            // Format the values
+            nome = nome.charAt(0).toUpperCase() + nome.slice(1).toLowerCase();
+            cognome = cognome.charAt(0).toUpperCase() + cognome.slice(1).toLowerCase();
+
+            var Forms = document.getElementsByClassName('form');
+            var myForms = document.getElementsByClassName('myForm');
+            var check = document.getElementsByClassName('checked');
+
+            for (var j = 0; j < Forms.length; j++) {
+                myForms[j].style.display = "none";
+                myForms[j].reset();
+                if (check[j]) {
+                 check[j].style.display = "none";
+                }
+            }
+
+            $.ajax({
+                url: "https://api.apispreadsheets.com/data/VUjWtheGTbAgkvoM/",
+                type: "GET",
+                success: function(response) {
+                    for (i = 0; i < response.data.length; i++) {
+                        if(response.data[i].full_name == nome + " " + cognome) {
+                            document.getElementById('results').style.display = "block"
+                            document.getElementsByClassName('form')[y].style.display = "block";
+                            document.getElementsByClassName('form')[y].setAttribute('data-name', response.data[i].full_name);
+                            document.getElementsByClassName('form')[y].setAttribute('data-shortname', response.data[i].name);
+                            document.getElementsByClassName('invitato')[y].innerHTML = response.data[i].name;
+                            y++;
+                        };
+                    }
+
+                },
+                error: function() {
+                    alert("C'è stato un errore nella ricerca del tuo nome, ci scusiamo per l'inconveniente e ti invitiamo a riprovare tra poco");
+                }
+            });
+
+            /*
+            setTimeout(pageScroll,900);
+            function pageScroll() {
+            window.scrollBy(0,10);
+            scrolldelay = setTimeout(pageScroll,1);
+            }*/
+		}
+	</script>
+    <link rel="stylesheet" href="stile.css">
+    <link rel="stylesheet" href="RSVP.css">
+</head>
+
+<body>
+
+<div class="menu">
+    <a href="index.html"><div id="logo">Clau e Fede</div></a>
+    <img class="hamburger" src="Resources/hamburger.svg" onclick="toggleMenu(this)">
+</div>
+
+<div id="menuOpen">
+    <div class="section">
+        <a href="index.html"><div class="sections">IL MATRIMONIO</div></a>
+        <a href="viaggio.html"><div class="sections">VIAGGIO DI NOZZE</div></a>
+        <a href="RSVP.html"><div class="sections">CONFERMA LA PRESENZA</div></a>
+    </div>
+    <div class="copyrights">Copyright 2024, All Rights Reserved</div>
+</div>
+
+<div class="testo">
+    <div>CONFERMA LA PRESENZA</div>
+    Ti preghiamo di confermare la presenza entro il 20 aprile e di segnalarci eventuali allergie/intolleranze
+</div>
+
+<form id="nomeCognome">
+    <div class="writeInInputs">
+        <div>Nome</div>
+        <input name="nome"></input>
+        <br> <br>
+        <div>Cognome</div>
+        <input name="cognome"></input>
+    </div>
+    <button type="button" onclick='ReadForm()'>CERCA</button>
+</form>
+
+    <div class="testo" id="results">Seleziona il tuo nome:</div>
+
+    <div class="cont">
+        <div class="form" onclick="Select(this)"> 
+            <div class="invitato"></div>
+            <form class="myForm">
+                <div class="chooseInput"> 
+                        <div class="choice" onclick="sayYes(this)">
+                            <input type="radio" name="presence" class="si" value="Si">
+                            <img class="checked" src="Resources/images/checked.png">
+                            <img src="Resources/images/boquet.webp">
+                            <span>Verrò</span>
+                        </div>
+                        <div class="choice" onclick="sayNo(this)">
+                            <input type="radio" name="presence" class="no" value="No">
+                            <img class="checked" src="Resources/images/checked.png">
+                            <img src="Resources/images/decline3.png">
+                            <span>Non verrò</span>
+                        </div>  
+                </div>
+                <div class="writeInInputs">
+                    <div>Indica qui eventuali allergie</div>
+                    <textarea name="allergie" placeholder="Es. Mandorle, noci..."></textarea>
+                </div>
+                <button class="invia" type="button" onclick="SubForm(this)">INVIA</button>
+            </form>
+        </div>
+        <div class="form" onclick="Select(this)"> 
+            <div class="invitato"></div>
+            <form class="myForm">
+                <div class="chooseInput"> 
+                        <div class="choice" onclick="sayYes(this)">
+                            <input type="radio" name="presence" class="si" value="Si">
+                            <img class="checked" src="Resources/images/checked.png">
+                            <img src="Resources/images/boquet.webp">
+                            <span>Ci sarò</span>
+                        </div>
+                        <div class="choice" onclick="sayNo(this)">
+                            <input type="radio" name="presence" class="no" value="No">
+                            <img class="checked" src="Resources/images/checked.png">
+                            <img src="Resources/images/decline3.png">
+                            <span>Non ci sarò</span>
+                        </div>  
+                </div>
+                <div class="writeInInputs">
+                    <div>Indica qui eventuali allergie</div>
+                    <textarea name="allergie" placeholder="Es. Mandorle, noci..."></textarea>
+                </div>
+                <button class="invia" type="button" onclick="SubForm(this)">INVIA</button>
+            </form>
+        </div>
+        <div class="form" onclick="Select(this)"> 
+            <div class="invitato"></div>
+            <form class="myForm">
+                <div class="chooseInput"> 
+                        <div class="choice" onclick="sayYes(this)">
+                            <input type="radio" name="presence" class="si" value="Si">
+                            <img class="checked" src="Resources/images/checked.png">
+                            <img src="Resources/images/boquet.webp">
+                            <span>Ci sarò</span>
+                        </div>
+                        <div class="choice" onclick="sayNo(this)">
+                            <input type="radio" name="presence" class="no" value="No">
+                            <img class="checked" src="Resources/images/checked.png">
+                            <img src="Resources/images/decline3.png">
+                            <span>Non ci sarò</span>
+                        </div>  
+                </div>
+                <div class="writeInInputs">
+                    <div>Indica qui eventuali allergie</div>
+                    <textarea name="allergie" placeholder="Es. Mandorle, noci..."></textarea>
+                </div>
+                <button class="invia" type="button" onclick="SubForm(this)">INVIA</button>
+            </form>
+        </div>
+        <div class="form" onclick="Select(this)"> 
+            <div class="invitato"></div>
+            <form class="myForm">
+                <div class="chooseInput"> 
+                        <div class="choice" onclick="sayYes(this)">
+                            <input type="radio" name="presence" class="si" value="Si">
+                            <img class="checked" src="Resources/images/checked.png">
+                            <img src="Resources/images/boquet.webp">
+                            <span>Ci sarò</span>
+                        </div>
+                        <div class="choice" onclick="sayNo(this)">
+                            <input type="radio" name="presence" class="no" value="No">
+                            <img class="checked" src="Resources/images/checked.png">
+                            <img src="Resources/images/decline3.png">
+                            <span>Non ci sarò</span>
+                        </div>  
+                </div>
+                <div class="writeInInputs">
+                    <div>Indica qui eventuali allergie</div>
+                    <textarea name="allergie" placeholder="Es. Mandorle, noci..."></textarea>
+                </div>
+                <button class="invia" type="button" onclick="SubForm(this)">INVIA</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="blur"></div>
+    <div id="confirmation">
+        <img class="close" src="Resources/closing.svg" onclick="window.location.reload();">
+        <div class="big">RISPOSTA INVIATA</div>
+        <div class="whitename">Marco T.</div>
+        <div class="pres">Sarà presente</div> 
+        <div class="smalltext">Allergie: Nessuna</div>
+    </div>
+
+    <script src="scriptHome.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
