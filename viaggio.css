@@ -1,0 +1,23 @@
+.maps {
+    width: 100vw;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+    .dosMaps {
+        margin-bottom: 16vh;
+    }
+    .maps {
+        width: 80vh;
+        margin-top: 3vh;
+    }
+
+    .dosMaps > .testo {
+        margin-bottom: 16vh;
+        margin-top: 16vh;
+    }
+
+}
