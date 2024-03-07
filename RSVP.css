@@ -1,0 +1,402 @@
+#nomeCognome > .writeInInputs {
+    width: 87vw;
+    margin-top: 9vh;
+}
+
+input {
+    width: 87vw;
+    margin: auto;
+    font-family: MisterK;
+    line-height: 1.4;
+    font-size: 16.6vw;
+    height: 18vw;
+    color: var(--orange);
+    border-top: 0px;
+    border-left: none;
+    border-right:none;
+    border-bottom: 1px solid var(--orange);
+    margin-top: 0vw;  
+    margin-bottom: 4vw; 
+    text-transform:capitalize;
+    padding: 0;
+}
+
+#results {
+    margin-top: 12vh;
+    margin-bottom: 3vh;
+    display: none;
+}
+
+
+.form{
+    background-color: white;
+    border: 1px solid;
+    border-radius: 18px;
+    width: 94vw;
+    margin: auto;
+    margin-top: 4vw;
+    margin-bottom: 4vw;
+    height: auto;
+    display: none;
+}
+
+.invitato {
+    margin-top: 15vw;
+    margin-bottom: 12vw;
+    font-family: MisterK;
+    font-size: 18vw;
+    line-height: 1;
+}
+
+.myForm {
+    display: none;
+}
+
+
+.chooseInput{
+    display: flex;
+    text-align: center;
+    width: 88vw;
+    margin: auto;
+}
+
+  input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+  }
+  
+  input[type="radio"]:checked {
+    opacity: 0;
+  }
+
+  .choice {
+    position: relative;
+    width: 50%;
+    height: 44vw;
+    border-radius: 18px;
+    margin: 1px;
+  }
+
+  .choice > span {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: -26%;
+    transform: translateX(-50%);
+    font-family: MisterK;
+    font-size: 15vw;
+    letter-spacing: -1px;
+  }
+
+  .choice > img {
+    position: absolute;
+    left: 50%;
+    top: -12%;
+    transform: translateX(-50%);
+    width: 96%;
+  }
+
+  .choice > .checked {
+    top: -16%;
+    width: 90%;
+    height: 96%;
+    display: none;
+    z-index: 10;
+}
+
+
+
+
+
+.writeInInputs{
+    width: 81vw;
+    margin: auto; 
+    margin-top: 9vh;
+    font-size: 5vw; 
+    text-align: left; 
+}
+
+.writeInInputs textarea {
+    font-family: MisterK;
+    line-height: 1;
+    height: 15vw;
+    color: var(--orange);
+    font-size: 12vw;
+    width: 80vw;
+    max-width: 80vw;
+    margin: auto;
+    border-top: 0px;
+    border-left: none;
+    border-right:none;
+    border-bottom: 1px solid var(--orange);
+    margin-top:5vw;  
+    margin-bottom: 4vw;     
+    text-transform:capitalize;
+}
+
+textarea::placeholder {
+    color: var(--orange);
+    overflow: hidden;
+    opacity: 36%;
+}
+
+
+
+
+#nomeCognome > button {
+    border-radius: 0px;
+    margin-top: 6vh;
+    width: 90vw;
+}
+
+button{
+    font-family: AdobeGaramond;
+    text-align: center;
+    font-size: 5vw;
+    height: 22vw;
+    width: 88vw;
+
+    color: white;
+    border: 1px solid;
+    background-color: var(--orange);
+    
+    margin-top: 3vh;
+    margin-bottom: 3vw;
+}
+
+.invia {
+    border-radius: 18px;
+    opacity: 0.5;
+}
+
+.cont {
+    margin-bottom: 3vh;
+}
+
+#confirmation {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translateX(-50%) translateY(-50%);
+    width: 90vw;
+    height: 110vw;
+    background-color: #2C3C20;
+    color: white;
+    text-align: center;
+    display: none;
+    z-index: 100;
+}
+
+#blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(3px);
+    height: 100vh;
+    width: 100vw;
+    z-index: 50;
+    display: none;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right:0;
+    width: 10.2%;
+    padding: 4%;
+    padding-right: 4.4%;
+}
+
+.big {
+    width: 100%;
+    font-size: 5vw;
+    position: absolute;
+    top: 12%;
+}
+
+.whitename {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    font-family: MisterK;
+    line-height: 1;
+    font-size: 18vw;
+}
+
+.pres {
+    width: 100%;
+    font-size: 5vw;
+    position: absolute;
+    top: 56%;
+}
+
+.smalltext {
+    width: 100%;
+    font-size: 4.5vw;
+    position: absolute;
+    top: 85%;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+    .writeInInputs{
+        width: 30vw;
+        margin: auto; 
+        margin-left: 2vw;
+        margin-top: 9vh;
+        font-size: 1.36vw; 
+        text-align: left; 
+    }
+
+    #nomeCognome > .writeInInputs {
+        width: 30vw;
+        margin-top: 9vh;
+        margin: auto; 
+    }
+    
+    input {
+        width: 30vw;
+        line-height: 1;
+        font-size: 5vw;
+        height: 6vw;
+        margin-top:2vh;  
+        margin-bottom: 3vh; 
+        text-transform:capitalize;
+    }
+
+    #nomeCognome > button {
+        border-radius: 0px;
+        margin-top: 9vh;
+        margin-bottom: 12vh;
+        width: 30vw;
+        height: 7vw;
+    }
+
+    #results {
+        margin-top: 0vh;
+        margin-bottom: 6vh;
+    }
+    
+    button{
+        font-size: 1.4vw;
+        height: 6.4vw;
+        width: 28vw;
+
+        margin-top: 3vh;
+        margin-bottom: 1vh;
+        cursor: pointer;
+    }
+
+    .form{
+        border-radius: 20px;
+        width: 30vw;
+        margin: auto;
+        margin-top: 0vh;
+        margin-bottom: 6vh;
+        height: auto;
+        display: none;
+        cursor: pointer;
+    }
+    
+    .invitato {
+        margin-top: 4.2vw;
+        margin-bottom: 3.4vw;
+        font-size: 5vw;
+    }
+    
+    .myForm {
+        display: none;
+    }
+    
+    .chooseInput{
+        display: flex;
+        text-align: center;
+        width: 28vw;
+        margin: auto;
+    }
+    
+      input[type="radio"] {
+        opacity: 0;
+        position: absolute;
+      }
+      
+      input[type="radio"]:checked {
+        opacity: 1;
+      }
+    
+      .choice {
+        position: relative;
+        width: 50%;
+        height: 14vw;
+        margin: 1px;
+      }
+    
+      .choice > span {
+        width: 90%;
+        position: absolute;
+        font-family: MisterK;
+        left: 50%;
+        bottom: -18%;
+        transform: translateX(-50%);
+        font-size: 4vw;
+        letter-spacing: -0.5px;
+      }
+    
+      .choice > img {
+        position: absolute;
+        left: 50%;
+        top: -12%;
+        transform: translateX(-50%);
+        width: 94%;
+      }
+    
+      .choice > .checked {
+        top: -15%;
+        width: 88%;
+        height: 96%;
+        display: none;
+        z-index: 10;
+    }
+
+    .writeInInputs textarea {
+        height: 4vw;
+        font-size: 3vw;
+        width: 26vw;
+        margin-top: 2vw;  
+        margin-bottom: 0vw;     
+    }
+
+    #confirmation {
+        width: 48vw;
+        height: 64vh;
+    }
+
+    .close {
+        width: 5%;
+        padding: 2.4%;
+        padding-right: 2.7%;
+    }
+
+    .big {
+        font-size: 1.36vw;
+    }
+    
+    .whitename {
+        font-size: 5vw;
+        top: 40%;
+    }
+    
+    .pres {
+        top: 55%;
+        font-size: 1.4vw;
+    }
+    
+    .smalltext {
+        font-size: 1.3vw;
+        top: 86%;
+    }
+
+}
