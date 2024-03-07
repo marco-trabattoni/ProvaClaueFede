@@ -135,6 +135,7 @@ input {
     margin-top:5vw;  
     margin-bottom: 4vw;     
     text-transform:capitalize;
+    resize:vertical;
 }
 
 textarea::placeholder {
