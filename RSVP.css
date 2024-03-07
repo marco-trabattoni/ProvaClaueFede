@@ -127,6 +127,7 @@ input {
     width: 100% !important;
     max-width: 100% !important;
     margin: auto;
+    margin-left: 0px;
     border-top: 0px;
     border-left: none;
     border-right:none;
